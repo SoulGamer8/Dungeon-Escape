@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    [SerializeField] private Animator animatorSword;
     private Animator _animator;
     void Start()
     {
@@ -20,5 +21,6 @@ public class PlayerAnimation : MonoBehaviour
 
     public void Attack(){
         _animator.SetTrigger("Attack");
+        animatorSword.SetTrigger("Attack");
     }
 }

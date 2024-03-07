@@ -30,6 +30,8 @@ public class PlayerMovment : MonoBehaviour
         _playerAnimation.Move(move);
         if(Input.GetKeyDown(KeyCode.Space) && IsGround())
             Jump();
+        if(Input.GetMouseButtonDown(0) && IsGround())
+            _playerAnimation.Attack();
     }
 
     private void Flip(float move){

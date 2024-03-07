@@ -17,4 +17,8 @@ public class PlayerAnimation : MonoBehaviour
     public void Jump(bool jumping){
         _animator.SetBool("Jumping",!jumping);
     }
+
+    public void Attack(){
+        _animator.SetTrigger("Attack");
+    }
 }

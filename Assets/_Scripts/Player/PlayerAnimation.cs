@@ -14,7 +14,7 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetFloat("Walk",Mathf.Abs(move));
     }
 
-    public void Jump(){
-        _animator.SetTrigger("Jump");
+    public void Jump(bool jumping){
+        _animator.SetBool("Jumping",!jumping);
     }
 }

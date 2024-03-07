@@ -25,6 +25,7 @@ public class PlayerMovment : MonoBehaviour
     {
         float move = Input.GetAxis("Horizontal");
         Flip(move);
+        _playerAnimation.Jump(IsGround());
         _rigidbody2D.velocity = new Vector2(move * _speed ,_rigidbody2D.velocity.y);
         _playerAnimation.Move(move);
         if(Input.GetKeyDown(KeyCode.Space) && IsGround())
@@ -34,9 +35,9 @@ public class PlayerMovment : MonoBehaviour
     private void Flip(float move){
            
         if(move< -0.1f)
-            gameObject.transform.rotation =Quaternion.Euler(0,180,0);
+            gameObject.transform.rotation = Quaternion.Euler(0,180,0);
         else if(move>0.1f)  
-            gameObject.transform.rotation =Quaternion.Euler(0,0,0);
+            gameObject.transform.rotation = Quaternion.Euler(0,0,0);
            
     }
 
@@ -45,11 +46,12 @@ public class PlayerMovment : MonoBehaviour
      private void Jump(){
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x ,_jumpForce);
         StartCoroutine(JumpResetTimer());
-        _playerAnimation.Jump();
+        _playerAnimation.Jump(IsGround());
     }
 
     private bool IsGround(){
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,1,_layerMask);
+        Debug.DrawRay(transform.position, Vector2.down,Color.green);
         if(hit.collider == null)
             return false;
         return true;

@@ -1,9 +1,89 @@
-<mxfile host="app.diagrams.net" modified="2024-03-08T02:21:17.733Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" version="24.0.2" etag="a-Kduv8pDe8au9eUG3qs" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-09T02:15:29.359Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0" etag="cnDscXOPxkCLTbVcUCeH" version="24.0.2" type="github">
   <diagram name="Сторінка-1" id="nX-8ziniqdhkfYTCaQva">
-    <mxGraphModel>
+    <mxGraphModel dx="1187" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NAvMypDCPrRjl8m9VEIo-3" target="NAvMypDCPrRjl8m9VEIo-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-3" value="abstract class&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Enemy&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="347" y="150" width="136" height="170" as="geometry">
+            <mxRectangle x="344" y="10" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-4" value="float&amp;nbsp; _speed" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="NAvMypDCPrRjl8m9VEIo-3">
+          <mxGeometry y="30" width="136" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-5" value="int _health" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="NAvMypDCPrRjl8m9VEIo-3">
+          <mxGeometry y="60" width="136" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-6" value="float _speedAtack" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="NAvMypDCPrRjl8m9VEIo-3">
+          <mxGeometry y="90" width="136" height="30" as="geometry" />
+        </mxCell>
+        <UserObject label="int _damage" placeholders="1" name="Variable" id="NAvMypDCPrRjl8m9VEIo-32">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="NAvMypDCPrRjl8m9VEIo-3">
+            <mxGeometry y="120" width="136" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-43" value="" style="line;strokeWidth=2;html=1;" vertex="1" parent="NAvMypDCPrRjl8m9VEIo-3">
+          <mxGeometry y="140" width="136" height="10" as="geometry" />
+        </mxCell>
+        <UserObject label="void&amp;nbsp; Death" placeholders="1" name="Variable" id="NAvMypDCPrRjl8m9VEIo-41">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="NAvMypDCPrRjl8m9VEIo-3">
+            <mxGeometry y="150" width="136" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-7" value="class Skeleton" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="345" y="390" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="NAvMypDCPrRjl8m9VEIo-11" target="NAvMypDCPrRjl8m9VEIo-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NAvMypDCPrRjl8m9VEIo-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="409" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="NAvMypDCPrRjl8m9VEIo-11" target="NAvMypDCPrRjl8m9VEIo-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-11" value="interface&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;IDamagable&lt;/span&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="319" y="550" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-15" value="class Moss Gigant" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="169" y="390" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-19" value="class Spide" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="519" y="390" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-12" value="Void TakeDamage(int damege)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="319" y="580" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="NAvMypDCPrRjl8m9VEIo-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="339" y="230" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" target="NAvMypDCPrRjl8m9VEIo-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="415" y="310" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-51" value="class Enemy&amp;lt;T&amp;gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="183" y="10" width="136" height="90" as="geometry">
+            <mxRectangle x="344" y="10" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-52" value="GameObject gameObject" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="NAvMypDCPrRjl8m9VEIo-51">
+          <mxGeometry y="30" width="136" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-53" value="T ScriptComponent" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="NAvMypDCPrRjl8m9VEIo-51">
+          <mxGeometry y="60" width="136" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NAvMypDCPrRjl8m9VEIo-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="NAvMypDCPrRjl8m9VEIo-53" target="NAvMypDCPrRjl8m9VEIo-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

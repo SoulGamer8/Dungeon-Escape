@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 namespace NeverMindEver.Enemy
@@ -21,6 +20,9 @@ namespace NeverMindEver.Enemy
         protected Animator _animator;
         protected SpriteRenderer _spriteRender;
 
+        protected bool _isCanTakeDamage = true;
+
+
         public virtual void Awake() {
                 _animator =GetComponent<Animator>();
                 _spriteRender = GetComponent<SpriteRenderer>();
@@ -36,13 +38,21 @@ namespace NeverMindEver.Enemy
 
         public void Damage(int damage)
         {
-            health -= damage;
-            if(health<=0)
-                Died();
+            if(_isCanTakeDamage){
+                health -= damage;
+                _animator.SetTrigger("Hit");
+                StartCoroutine(Invincible());
+                _animator.SetBool("InCombat",true);
+                _isWalk = false;
+                Debug.Log(_isWalk);
+                 // StartCoroutine(Freeze());
+                if(health<=0)
+                    Died();
+            }
         }
 
         public virtual void Died(){
-
+            Destroy(gameObject);
         }
 
         private IEnumerator Wait(){
@@ -67,6 +77,18 @@ namespace NeverMindEver.Enemy
                 break;
             }
            
+        }
+
+        private IEnumerator Freeze(){
+            _isWalk = false;
+            yield return new WaitForSeconds(0.5f);
+            _isWalk = true;
+        }
+
+        private IEnumerator Invincible(){
+            _isCanTakeDamage = false;
+             yield return new WaitForSeconds(0.5f);
+             _isCanTakeDamage = true;
         }
 
     }

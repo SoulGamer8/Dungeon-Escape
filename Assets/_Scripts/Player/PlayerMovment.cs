@@ -8,10 +8,9 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
     [SerializeField] private LayerMask _layerMask;
-
+    [SerializeField] private GameObject _hitBoxSword;
 
     private bool _jumpReset = true;
-    private bool _isGround = true;
 
     private Rigidbody2D _rigidbody2D;
     private PlayerAnimation _playerAnimation;
@@ -31,7 +30,7 @@ public class PlayerMovment : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && IsGround())
             Jump();
         if(Input.GetMouseButtonDown(0) && IsGround())
-            _playerAnimation.Attack();
+           Attack();
     }
 
     private void Flip(float move){
@@ -41,6 +40,15 @@ public class PlayerMovment : MonoBehaviour
         else if(move>0.1f)  
             gameObject.transform.rotation = Quaternion.Euler(0,0,0);
            
+    }
+
+    
+    private void Attack(){
+        _hitBoxSword.SetActive(true);
+        _playerAnimation.Attack();
+    }
+    public void StopAttack(){
+        _hitBoxSword.SetActive(false);
     }
 
     #region Jump

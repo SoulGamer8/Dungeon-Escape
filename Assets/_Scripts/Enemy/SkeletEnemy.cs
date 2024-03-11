@@ -4,18 +4,7 @@ using UnityEngine;
 
 namespace NeverMindEver.Enemy
 {
-    public class SkeletEnemy : MonoBehaviour
+    public class SkeletEnemy : Enemy
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

@@ -6,10 +6,10 @@ namespace NeverMindEver.Enemy
 {
     public abstract class Enemy : MonoBehaviour,IDamageable
     {
+        [Header("Health")]
         [SerializeField] protected int health;
 
-        [SerializeField] protected int _damage;
-        [SerializeField] protected float _speedAtack;
+
 
         [Header("Movment")]
         [SerializeField] protected float speed;
@@ -17,35 +17,57 @@ namespace NeverMindEver.Enemy
         protected int _currentTarget=0;
         protected bool _isWalk=true;
 
+        [Header("Attack")]
+        [SerializeField] protected int _damage;
+        [SerializeField] protected float _speedAtack;
+        protected bool _isCanTakeDamage = true;
+        protected bool _isInCombaStatus=false;
+
+
         protected Animator _animator;
         protected SpriteRenderer _spriteRender;
 
-        protected bool _isCanTakeDamage = true;
-
+        private Transform _playerTransform;
 
         public virtual void Awake() {
                 _animator =GetComponent<Animator>();
                 _spriteRender = GetComponent<SpriteRenderer>();
+        } 
+
+        private void Start() {
+            _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         public virtual void Update() {
-            float step = speed * Time.deltaTime;
-            if(_isWalk)
-                transform.position = Vector2.MoveTowards(transform.position, _targetMove[_currentTarget].position, step);
-            if(Vector2.Distance(transform.position, _targetMove[_currentTarget].position)<0.5f)
-                StartCoroutine(Wait());
+            Debug.Log(_isWalk==true);
+            if(_isWalk==true && _isInCombaStatus == false)
+                Movment();
+            if(_isInCombaStatus == true)
+                if(Vector2.Distance(transform.position, _targetMove[_currentTarget].position)>2f){
+                    _isInCombaStatus=false;
+                    _animator.SetBool("InCombat",_isInCombaStatus);
+                    _isWalk=true;
+                }
         }
 
+        
+
+        #region Damage 
+        
         public void Damage(int damage)
         {
             if(_isCanTakeDamage){
                 health -= damage;
+                
                 _animator.SetTrigger("Hit");
+                _animator.SetBool("InCombat",_isInCombaStatus);
+
                 StartCoroutine(Invincible());
-                _animator.SetBool("InCombat",true);
-                _isWalk = false;
-                Debug.Log(_isWalk);
-                 // StartCoroutine(Freeze());
+                _isWalk=false;
+                _isInCombaStatus=true;
+
+                 
+                //StartCoroutine(Freeze());
                 if(health<=0)
                     Died();
             }
@@ -55,6 +77,35 @@ namespace NeverMindEver.Enemy
             Destroy(gameObject);
         }
 
+      
+        private IEnumerator Freeze(){
+            _isWalk = false;
+            _animator.SetBool("InCombat",true);
+            yield return new WaitForSeconds(5f);
+            _animator.SetBool("InCombat",false);
+            _isWalk = true;
+        }
+
+        private IEnumerator Invincible(){
+            _isCanTakeDamage = false;
+             yield return new WaitForSeconds(0.5f);
+             _isCanTakeDamage = true;
+        }
+
+        #endregion 
+
+
+        #region  Movment
+        
+        private void Movment(){
+            float step = speed * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, _targetMove[_currentTarget].position, step);
+
+            if(Vector2.Distance(transform.position, _targetMove[_currentTarget].position)<0.5f)
+                StartCoroutine(Wait());
+
+        }
+        
         private IEnumerator Wait(){
             _isWalk = false;
             _animator.SetBool("Walking",_isWalk);
@@ -67,6 +118,7 @@ namespace NeverMindEver.Enemy
             FlipSprite();
         }
 
+
         private void FlipSprite(){
             switch(_currentTarget){
                 case 0:
@@ -77,19 +129,9 @@ namespace NeverMindEver.Enemy
                 break;
             }
            
-        }
+        }    
 
-        private IEnumerator Freeze(){
-            _isWalk = false;
-            yield return new WaitForSeconds(0.5f);
-            _isWalk = true;
-        }
 
-        private IEnumerator Invincible(){
-            _isCanTakeDamage = false;
-             yield return new WaitForSeconds(0.5f);
-             _isCanTakeDamage = true;
-        }
-
+        #endregion
     }
 }

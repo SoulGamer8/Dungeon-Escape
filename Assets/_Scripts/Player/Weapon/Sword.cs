@@ -11,6 +11,6 @@ public class Sword : MonoBehaviour
     if(iDamageable == null) 
         return;
     if(other.tag =="Enemy")
-        iDamageable.Damage(_damage);
+        iDamageable.TakeDamage(_damage);
    }
 }

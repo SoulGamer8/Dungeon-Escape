@@ -34,37 +34,46 @@ namespace NeverMindEver.Enemy
                 _spriteRender = GetComponent<SpriteRenderer>();
         } 
 
-        private void Start() {
-            _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-
         public virtual void Update() {
-            Debug.Log(_isWalk==true);
-            if(_isWalk==true && _isInCombaStatus == false)
+            if(_isWalk==true && !_isInCombaStatus)
                 Movment();
-            if(_isInCombaStatus == true)
-                if(Vector2.Distance(transform.position, _targetMove[_currentTarget].position)>2f){
-                    _isInCombaStatus=false;
-                    _animator.SetBool("InCombat",_isInCombaStatus);
-                    _isWalk=true;
-                }
+            if(_isInCombaStatus == true ){
+                Attack();
+            }
         }
 
-        
+        protected virtual void Attack(){
+            _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+                
+            Vector3 direction = _playerTransform.transform.position - transform.position;
+            FlipSprite(direction.x);
+
+            if(Vector2.Distance(transform.position, _playerTransform.position)>5f){
+                _isInCombaStatus=false;
+                _isWalk=true;   
+                _animator.SetBool("InCombat",_isInCombaStatus);    
+
+                direction = _targetMove[_currentTarget].position - transform.position;
+                FlipSprite(direction.x);
+            }
+        }
+
 
         #region Damage 
         
-        public void Damage(int damage)
+        public void TakeDamage(int damage)
         {
             if(_isCanTakeDamage){
                 health -= damage;
                 
                 _animator.SetTrigger("Hit");
+
+                _isInCombaStatus=true;
                 _animator.SetBool("InCombat",_isInCombaStatus);
 
                 StartCoroutine(Invincible());
                 _isWalk=false;
-                _isInCombaStatus=true;
+
 
                  
                 //StartCoroutine(Freeze());
@@ -73,18 +82,10 @@ namespace NeverMindEver.Enemy
             }
         }
 
-        public virtual void Died(){
+        protected virtual void Died(){
             Destroy(gameObject);
         }
 
-      
-        private IEnumerator Freeze(){
-            _isWalk = false;
-            _animator.SetBool("InCombat",true);
-            yield return new WaitForSeconds(5f);
-            _animator.SetBool("InCombat",false);
-            _isWalk = true;
-        }
 
         private IEnumerator Invincible(){
             _isCanTakeDamage = false;
@@ -97,10 +98,11 @@ namespace NeverMindEver.Enemy
 
         #region  Movment
         
-        private void Movment(){
+        protected virtual void Movment(){
             float step = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, _targetMove[_currentTarget].position, step);
-
+          
+            
             if(Vector2.Distance(transform.position, _targetMove[_currentTarget].position)<0.5f)
                 StartCoroutine(Wait());
 
@@ -115,20 +117,16 @@ namespace NeverMindEver.Enemy
             yield return new WaitForSeconds(5);
             _isWalk = true;
             _animator.SetBool("Walking",_isWalk);
-            FlipSprite();
+            Vector3 direction = _targetMove[_currentTarget].position - transform.position;
+            FlipSprite(direction.x);
         }
 
 
-        private void FlipSprite(){
-            switch(_currentTarget){
-                case 0:
-                gameObject.transform.rotation = Quaternion.Euler(0,180,0);
-                break;
-                case 1:
+        private void FlipSprite(float direction){
+           if(direction > 0)
                 gameObject.transform.rotation = Quaternion.Euler(0,0,0);
-                break;
-            }
-           
+            else 
+                gameObject.transform.rotation = Quaternion.Euler(0,180,0);
         }    
 
 

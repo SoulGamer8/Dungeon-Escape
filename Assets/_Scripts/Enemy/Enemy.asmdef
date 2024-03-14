@@ -2,7 +2,8 @@
     "name": "Enemy",
     "rootNamespace": "NeverMindEver.Enemy",
     "references": [
-        "GUID:b420e7be4d0efac43aeeeb72715b2d1f"
+        "GUID:b420e7be4d0efac43aeeeb72715b2d1f",
+        "GUID:f6fb7fa5df5626b40a548382ed408d6c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

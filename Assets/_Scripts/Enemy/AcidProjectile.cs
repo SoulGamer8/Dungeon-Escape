@@ -8,7 +8,11 @@ namespace NeverMindEver.Enemy
     public class AcidProjectile : MonoBehaviour
     {
 
-        private int _damage;
+        public int _damage{get;set;}
+        
+        private void Start() {
+            StartCoroutine(TimeExitProjectile());
+        }
 
         private void Update() {
             Movment();
@@ -16,7 +20,7 @@ namespace NeverMindEver.Enemy
 
         private void Movment()
         {
-            transform.position += Vector3.left;            
+           transform.Translate(Vector3.right * 3 * Time.deltaTime);
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
@@ -29,8 +33,13 @@ namespace NeverMindEver.Enemy
             }
        }
 
-       private void Died(){
-        Destroy(gameObject);
-       }
+        private void Died(){
+            Destroy(gameObject);
+        }
+
+        private IEnumerator TimeExitProjectile(){
+            yield return new WaitForSeconds(3);
+            Died();
+        }
     }
 }

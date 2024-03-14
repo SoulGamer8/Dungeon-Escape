@@ -22,22 +22,24 @@ namespace NeverMindEver.Enemy
         [SerializeField] protected float _speedAtack;
         protected bool _isCanTakeDamage = true;
         protected bool _isInCombaStatus=false;
+        protected bool _isDead= false;
 
-
+        [SerializeField] protected GameObject _diamondPrefab;
+        [SerializeField] protected int _scoreForKill;
         protected Animator _animator;
         protected SpriteRenderer _spriteRender;
 
-        private Transform _playerTransform;
+        protected Transform _playerTransform;
 
-        public virtual void Awake() {
+        protected virtual void Awake() {
                 _animator =GetComponent<Animator>();
                 _spriteRender = GetComponent<SpriteRenderer>();
         } 
 
-        public virtual void Update() {
-            if(_isWalk==true && !_isInCombaStatus)
+        protected virtual void Update() {
+            if(_isWalk==true && !_isInCombaStatus && _isDead == false)
                 Movment();
-            if(_isInCombaStatus == true ){
+            if(_isInCombaStatus == true && _isDead == false){
                 Attack();
             }
         }
@@ -63,6 +65,8 @@ namespace NeverMindEver.Enemy
         
         public void TakeDamage(int damage)
         {
+            if(_isDead == true)
+                return;
             if(_isCanTakeDamage){
                 health -= damage;
                 
@@ -83,7 +87,10 @@ namespace NeverMindEver.Enemy
         }
 
         protected virtual void Died(){
-            Destroy(gameObject);
+            _animator.SetTrigger("Death");
+            GameObject diamond =Instantiate(_diamondPrefab,transform.position,Quaternion.identity);
+            diamond.GetComponent<Diamond>().SetScore(_scoreForKill);
+            _isDead =true;
         }
 
 

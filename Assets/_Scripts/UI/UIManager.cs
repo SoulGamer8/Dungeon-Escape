@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,11 +18,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _playerGemCountText;
     [SerializeField] private Image _selectionImage; 
 
+    [SerializeField] private TMP_Text _gemCountText;
+
+
     public void OpenShop(int gemCount){
         _playerGemCountText.text = gemCount.ToString() + "G";
     }
 
-    public void SelecItem(){
-        Debug.Log("Selected");
-    } 
+    public void UpdateShopSelection(int yPos){
+        _selectionImage.rectTransform.anchoredPosition = new Vector2(_selectionImage.rectTransform.anchoredPosition.x,yPos);
+    }
+
+    public void UpdateGemCount(int gems){
+        _gemCountText.text = gems.ToString() + "G";
+    }
+
 }

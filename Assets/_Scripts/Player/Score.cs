@@ -12,5 +12,6 @@ public class Score : MonoBehaviour
     }    
     public void AddScore(int score){
         _score +=score;
+        UIManager.Instance.UpdateGemCount(_score);
     }
 }

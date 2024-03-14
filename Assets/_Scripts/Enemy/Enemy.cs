@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace NeverMindEver.Enemy
@@ -78,9 +77,6 @@ namespace NeverMindEver.Enemy
                 StartCoroutine(Invincible());
                 _isWalk=false;
 
-
-                 
-                //StartCoroutine(Freeze());
                 if(health<=0)
                     Died();
             }

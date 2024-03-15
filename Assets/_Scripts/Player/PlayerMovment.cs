@@ -10,6 +10,8 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private GameObject _hitBoxSword;
 
+    [SerializeField] public FixedJoystick variableJoystick;
+
     private bool _jumpReset = true;
 
     private Rigidbody2D _rigidbody2D;
@@ -20,17 +22,13 @@ public class PlayerMovment : MonoBehaviour
         _playerAnimation = GetComponent<PlayerAnimation>();
     }
 
-    void Update()
+
+    public void FixedUpdate()
     {
-        float move = Input.GetAxis("Horizontal");
+        float move = variableJoystick.Horizontal;
         Flip(move);
-        _playerAnimation.Jump(IsGround());
-        _rigidbody2D.velocity = new Vector2(move * _speed ,_rigidbody2D.velocity.y);
+        _rigidbody2D.velocity =new Vector2(move * _speed ,_rigidbody2D.velocity.y);
         _playerAnimation.Move(move);
-        if(Input.GetKeyDown(KeyCode.Space) && IsGround())
-            Jump();
-        if(Input.GetMouseButtonDown(0) && IsGround())
-           Attack();
     }
 
     private void Flip(float move){
@@ -43,7 +41,7 @@ public class PlayerMovment : MonoBehaviour
     }
 
     
-    private void Attack(){
+    public void Attack(){
         _hitBoxSword.SetActive(true);
         _playerAnimation.Attack();
     }
@@ -53,7 +51,7 @@ public class PlayerMovment : MonoBehaviour
 
     #region Jump
 
-     private void Jump(){
+    public void Jump(){
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x ,_jumpForce);
         StartCoroutine(JumpResetTimer());
         _playerAnimation.Jump(IsGround());
